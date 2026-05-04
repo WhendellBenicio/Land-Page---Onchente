@@ -1,0 +1,367 @@
+HTML
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onchente</title>
+
+ 
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+    <link rel="stylesheet" href="style.css">
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="bg-[#f9fbfc] text-[#333333] overflow-x-hidden">
+
+<header id="main-nav" class="fixed top-0 w-full z-50 transition-all duration-300 py-6 bg-transparent">
+    <div class="container mx-auto px-6 max-w-6xl flex justify-center items-center">
+        <nav class="flex gap-8">
+            <a href="#inicio" class="nav-link">Início</a>
+            <a href="#impacto" class="nav-link">Nosso Impacto</a>
+            <a href="#metodologia" class="nav-link">Como Funciona</a>
+            <a href="#equipe" class="nav-link">Equipe</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+
+<section id="inicio" class="min-h-screen bg-gradient-to-br from-[#7fbac3] to-[#d9f0f3] flex items-center justify-center pt-24 pb-12 px-6">
+    <div class="max-w-3xl flex flex-col items-center text-center">
+        <img src="https://i.imgur.com/jNP008z.png" class="max-w-[280px] mb-8 mix-blend-multiply">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-[#1f3f44] mb-6">
+            Tecnologia que ajuda a transformar doações em solidariedade.
+        </h1>
+        <p class="text-lg mb-10">
+            Relatório interativo da plataforma Onchente.
+        </p>
+        <button id="btnExplorar" class="btn-main">EXPLORAR DADOS</button>
+    </div>
+</section>
+
+
+<section id="impacto" class="py-16 text-center">
+    <h2 class="text-2xl font-bold mb-4">Métricas de Impacto</h2>
+
+    <p class="max-w-2xl mx-auto text-[#666] mb-8">
+        Abaixo, apresentamos a síntese dos nossos esforços recentes. Utilize os controles para explorar os dados quantitativos de doações recebidas e o crescimento da nossa rede de voluntários.
+    </p>
+    <div class="max-w-xl mx-auto">
+        <canvas id="donationChart"></canvas>
+    </div>
+</section>
+
+    <div class="max-w-4xl mx-auto">
+        <div class="mb-6 flex gap-2">
+            <button id="btn-mensal" class="btn-active">Mensal</button>
+            <button id="btn-anual" class="btn-inactive">Anual</button>
+        </div>
+
+        <h3 id="total-doacoes" class="text-3xl font-bold mb-6">12.450</h3>
+
+        <canvas id="donationChart"></canvas>
+    </div>
+</section>
+  
+  <section id="metodologia" class="py-24 px-6 bg-[#f4f7f8]">
+  <div class="max-w-6xl mx-auto text-center mb-16">
+    <h2 class="text-3xl font-bold text-[#1f3f44] mb-4">O que fazemos</h2>
+    <p class="text-[#666] max-w-2xl mx-auto">
+      Nossa plataforma conecta doadores, voluntários e pessoas afetadas por enchentes de forma rápida e eficiente.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+    <div class="card-info">
+      <span>📍</span>
+      <h3>Localização</h3>
+      <p>Identificamos áreas afetadas em tempo real para direcionar ajuda com precisão.</p>
+    </div>
+
+    <div class="card-info">
+      <span>🎁</span>
+      <h3>Doações</h3>
+      <p>Conectamos doadores com quem realmente precisa de forma organizada.</p>
+    </div>
+
+    <div class="card-info">
+      <span>📞</span>
+      <h3>Atendimento</h3>
+      <p>Priorizamos situações urgentes para resposta mais rápida.</p>
+    </div>
+
+    <div class="card-info">
+      <span>👥</span>
+      <h3>Comunidade</h3>
+      <p>Mobilizamos voluntários e instituições para ajudar na logística.</p>
+    </div>
+
+  </div>
+</section>
+  
+  <section id="equipe" class="py-24 px-6 bg-white">
+  <div class="max-w-6xl mx-auto text-center mb-16">
+    <h2 class="text-3xl font-bold text-[#1f3f44] mb-4">Nosso time</h2>
+    <p class="text-[#666]">Equipe responsável pelo projeto</p>
+  </div>
+
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+
+ 
+    <div class="card-team">
+      <img src="https://i.imgur.com/4CkNpAU.jpeg" class="team-img">
+      <h4>Maria Clara</h4>
+      <p>Dev</p>
+    </div>
+
+    <div class="card-team">
+      <img src="https://i.imgur.com/AkHBwtS.jpeg" class="team-img">
+      <h4>Nicolle</h4>
+      <p>Dev</p>
+    </div>
+
+    <div class="card-team">
+      <img src="https://i.imgur.com/pYAQjYp.jpeg" class="team-img">
+      <h4>Whendell</h4>
+      <p>Dev</p>
+    </div>
+
+    <div class="card-team">
+      <img src="https://i.imgur.com/TtdoZu1.jpeg" class="team-img">
+      <h4>Pedro</h4>
+      <p>Dev</p>
+    </div>
+
+    <div class="card-team">
+      <img src="https://i.imgur.com/hTfZNe4.jpeg" class="team-img">
+      <h4>Gustavo</h4>
+      <p>Dev</p>
+    </div>
+
+    <div class="card-team">
+      <img src="https://i.imgur.com/NQXcp6C.jpeg" class="team-img">
+      <h4>Leandro</h4>
+      <p>UX/UI</p>
+    </div>
+
+    <div class="card-team">
+      <img src="https://i.imgur.com/jfGYdyy.jpeg" class="team-img">
+      <h4>Guilherme</h4>
+      <p>Documentação</p>
+    </div>
+
+    <div class="card-team">
+      <img src="https://i.imgur.com/kqItCBr.jpeg" class="team-img">
+      <h4>Luana</h4>
+      <p>Comunicação</p>
+    </div>
+    
+    <div class="card-team">
+      <img src="https://i.imgur.com/Kjo43eo.jpeg" class="team-img">
+      <h4>Danilo</h4>
+      <p>Comunicação</p>
+    </div>
+
+    <div class="card-team">
+      <img src="https://i.imgur.com/4djHV3Y.jpeg" class="team-img">
+      <h4>Lucas</h4>
+      <p>Comunicação</p>
+    </div>
+
+  </div>
+</section>
+
+
+<footer class="bg-[#2f6f77] text-white text-center py-16">
+    <h2 class="text-3xl mb-6">Juntos, podemos fazer a diferença</h2>
+    <button id="btnCTA" class="bg-white text-[#2f6f77] px-8 py-3 rounded-full font-bold">
+        FAÇA PARTE
+    </button>
+    <p id="cta-message" class="hidden mt-4">Cadastro em breve...</p>
+</footer>
+
+</main>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
+
+
+CSS
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+}
+
+
+.nav-link {
+    font-weight: bold;
+    color: #1f3f44;
+    position: relative;
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #1f3f44;
+    bottom: -5px;
+    left: 0;
+    transition: 0.3s;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+
+.btn-main {
+    background: #2f6f77;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+
+.btn-main:hover {
+    transform: scale(1.05);
+}
+
+.btn-active {
+    background: #5eaab3;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.btn-inactive {
+    background: #e0e8e9;
+    color: #1f3f44;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.card-info {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.card-info span {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.card-info h3 {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #1f3f44;
+}
+
+.card-info p {
+    font-size: 14px;
+    color: #666;
+}
+
+.card-info:hover {
+    transform: translateY(-8px);
+}
+
+
+.card-team {
+    background: #f9fbfc;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.team-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: auto;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+
+JS
+
+document.addEventListener("DOMContentLoaded", () => {
+
+   
+    const nav = document.getElementById("main-nav");
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+            nav.classList.add("bg-white", "shadow-md", "py-4");
+            nav.classList.remove("py-6");
+        } else {
+            nav.classList.remove("bg-white", "shadow-md", "py-4");
+            nav.classList.add("py-6");
+        }
+    });
+
+    
+    document.getElementById("btnExplorar").addEventListener("click", () => {
+        document.getElementById("impacto").scrollIntoView({ behavior: "smooth" });
+    });
+
+   
+    const data = {
+        mensal: [4500, 3200, 2100, 1800, 850],
+        anual: [54000, 38500, 25200, 21600, 10200]
+    };
+
+    
+    const ctx = document.getElementById("donationChart");
+
+    const chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: ["Água", "Alimentos", "Roupas", "Higiene", "Limpeza"],
+            datasets: [{
+                data: data.mensal
+            }]
+        }
+    });
+
+  
+    document.getElementById("btn-mensal").onclick = () => {
+        chart.data.datasets[0].data = data.mensal;
+        chart.update();
+        document.getElementById("total-doacoes").textContent = "12.450";
+    };
+
+    document.getElementById("btn-anual").onclick = () => {
+        chart.data.datasets[0].data = data.anual;
+        chart.update();
+        document.getElementById("total-doacoes").textContent = "149.500";
+    };
+
+   
+    document.getElementById("btnCTA").onclick = () => {
+        const msg = document.getElementById("cta-message");
+        msg.classList.remove("hidden");
+
+        setTimeout(() => {
+            msg.classList.add("hidden");
+        }, 3000);
+    };
+
+});
