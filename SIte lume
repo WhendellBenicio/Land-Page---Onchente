@@ -1,0 +1,231 @@
+HTML
+
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<div class="app-container">
+
+
+<header class="bg-white border-b border-teal-100 p-4 flex items-center gap-3 shadow-sm">
+    <button id="backBtn" class="hidden text-teal-700">←</button>
+    <div class="w-8 h-8 bg-teal-50 rounded-full flex items-center justify-center">
+        🛟
+    </div>
+    <h1 id="screenTitle" class="text-sm font-bold text-teal-900 uppercase">Início</h1>
+</header>
+
+
+<main id="homeScreen" class="screen active p-4 space-y-4">
+
+    <div class="bg-teal-50 border-l-4 border-teal-500 p-4 rounded-xl">
+        <h2 class="font-bold text-teal-900">⚠ ALERTA ATIVO</h2>
+        <p class="text-xs text-teal-700">Risco de inundação elevado.</p>
+    </div>
+
+    <button onclick="navigateTo('info')" class="card">
+        Fique informado →
+    </button>
+
+    <button onclick="navigateTo('location')" class="card">
+        Abrigos Próximos →
+    </button>
+
+    <div class="grid grid-cols-2 gap-4">
+        <button onclick="navigateTo('call')" class="btn-dark">Ligação</button>
+        <button onclick="navigateTo('chat')" class="btn-main">Chat</button>
+    </div>
+
+</main>
+
+
+<main id="infoScreen" class="screen p-4">
+    <h2 class="title-section">Preparação</h2>
+    <p class="text-gray-600">Desconecte aparelhos e leve documentos protegidos.</p>
+</main>
+
+
+<main id="locationScreen" class="screen p-4 space-y-3">
+    <h2 class="title-section">Abrigos</h2>
+    <div id="abrigosList"></div>
+</main>
+
+
+<main id="chatScreen" class="screen flex flex-col h-[80vh]">
+    <div id="messagesArea" class="flex-1 p-4 space-y-2 overflow-y-auto"></div>
+
+    <div class="p-3 bg-white flex gap-2 border-t">
+        <input id="chatInput" class="flex-1 bg-teal-50 rounded-full px-4 py-2" placeholder="Digite...">
+        <button id="sendBtn" class="btn-dark px-4">→</button>
+    </div>
+</main>
+
+
+<main id="callScreen" class="screen flex flex-col items-center justify-center h-[80vh] bg-[#2C3E42] text-white">
+    <h2 class="text-xl font-bold">Chamando...</h2>
+    <p id="callTimer" class="text-2xl mt-4">00:00</p>
+</main>
+
+
+<nav class="bottom-nav">
+    <button onclick="navigateTo('home')">Início</button>
+    <button onclick="navigateTo('location')">Mapa</button>
+    <button onclick="navigateTo('chat')">Chat</button>
+</nav>
+
+</div>
+
+CSS
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f3f4f6;
+}
+
+.app-container {
+    max-width: 420px;
+    margin: auto;
+    background: #F4F9F9;
+    min-height: 100vh;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+
+.screen {
+    display: none;
+}
+.screen.active {
+    display: block;
+}
+
+
+.card {
+    background: white;
+    padding: 16px;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    width: 100%;
+    text-align: left;
+}
+
+
+.btn-main {
+    background: #5D9EA6;
+    color: white;
+    padding: 20px;
+    border-radius: 16px;
+    width: 100%;
+}
+
+.btn-dark {
+    background: #2C3E42;
+    color: white;
+    padding: 20px;
+    border-radius: 16px;
+    width: 100%;
+}
+
+
+.title-section {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+#messagesArea div {
+    background: white;
+    padding: 10px;
+    border-radius: 12px;
+    max-width: 80%;
+}
+
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    justify-content: space-around;
+    background: white;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
+
+
+JS
+
+let callInterval;
+let seconds = 0;
+
+const abrigos = [
+  { nome: "Ginásio Central", dist: "1.2 km" },
+  { nome: "Escola Sul", dist: "2.8 km" },
+  { nome: "Paróquia São Bento", dist: "0.8 km" }
+];
+
+window.onload = () => {
+  renderAbrigos();
+  setupChat();
+};
+
+function navigateTo(screen) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(screen + "Screen").classList.add('active');
+
+  if (screen === 'call') startCall();
+  else stopCall();
+}
+
+function renderAbrigos() {
+  const el = document.getElementById("abrigosList");
+
+  el.innerHTML = abrigos.map(a => `
+    <div class="card">
+      ${a.nome} - ${a.dist}
+    </div>
+  `).join('');
+}
+
+/* CHAT */
+function setupChat() {
+  const btn = document.getElementById("sendBtn");
+  const input = document.getElementById("chatInput");
+  const area = document.getElementById("messagesArea");
+
+  btn.onclick = () => {
+    if (!input.value) return;
+
+    const msg = document.createElement("div");
+    msg.innerText = input.value;
+    msg.style.alignSelf = "flex-end";
+    msg.style.background = "#5D9EA6";
+    msg.style.color = "white";
+
+    area.appendChild(msg);
+    input.value = "";
+
+    setTimeout(() => {
+      const bot = document.createElement("div");
+      bot.innerText = "Estamos analisando sua situação.";
+      area.appendChild(bot);
+    }, 800);
+  };
+}
+
+/* CALL */
+function startCall() {
+  const timer = document.getElementById("callTimer");
+
+  callInterval = setInterval(() => {
+    seconds++;
+    const m = String(Math.floor(seconds / 60)).padStart(2, '0');
+    const s = String(seconds % 60).padStart(2, '0');
+    timer.innerText = `${m}:${s}`;
+  }, 1000);
+}
+
+function stopCall() {
+  clearInterval(callInterval);
+  seconds = 0;
+}
